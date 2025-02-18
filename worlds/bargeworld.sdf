@@ -62,6 +62,7 @@
           <property key="showTitleBar" type="bool">false</property>
         </gz-gui>
       </plugin>
+      <!--
       <plugin filename="CameraTracking" name="Camera Tracking">
         <gz-gui>
           <property key="resizable" type="bool">false</property>
@@ -71,6 +72,7 @@
           <property key="showTitleBar" type="bool">false</property>
         </gz-gui>
       </plugin>
+      -->
       <plugin filename="MarkerManager" name="Marker manager">
         <gz-gui>
           <property key="resizable" type="bool">false</property>
@@ -232,8 +234,15 @@
     </spherical_coordinates>
 
     <include>
-      <uri>model://barge</uri>
+      <uri>model://barge_actuated</uri>
     </include>
 
+    <!--
+    <include>
+      <pose>0 0 3 0 0 0</pose>
+      <uri>model://elevator</uri>
+    </include>
+    -->
+    
   </world>
 </sdf>
