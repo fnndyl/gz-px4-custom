@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sdf version='1.9'>
   <model name='barge'>
-    <pose>0 0 0 0 0 1.5708</pose> <!-- 1 0 -1 -->
+    <pose>0 0 0 0 0 0</pose> <!-- 1 0 -1 -->
 
     <!-- LINKS -->
     <link name='root'>
       <pose>0 0 0 0 0 0</pose>
-      <static>true</static>
     </link>
     
     <link name='base'>
