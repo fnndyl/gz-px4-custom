@@ -1,8 +1,13 @@
 # Notes for modified version of this repo
-If repo needs to be installed in new copy of PX4-Autopilot, for additional worlds/models to run need to modify "sitl_target.cmake" file in PX4 repo.
+If repo needs to be installed in new copy of PX4-Autopilot, for additional worlds/models to run need to modify "sitl_target.cmake" file in PX4 repo, **or better yet, use PX4_SIM_MODEL and PX4_GZ_WORLD parameters while launching.** See: https://docs.px4.io/main/en/sim_gazebo_gz/.
 
-Additional worlds added by repo:
+Additional worlds added by repo (some backporting to PX4 15.2 which you should be using):
 Bargeworld - for barge based landing of autonomous quadrotor
+Moving Platform - from future version of this repo (how spooky)
+
+Notes on plugins:
+https://github.com/PX4/PX4-Autopilot/blob/main/docs/en/sim_gazebo_gz/plugins.md
+
 
 # PX4-gazebo-models
 Models and worlds to be used in local Fuel instances and kept up to date in [app.gazebosim.org/PX4](https://app.gazebosim.org/PX4).
