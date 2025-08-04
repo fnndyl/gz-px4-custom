@@ -194,8 +194,8 @@
     </spherical_coordinates>
 
     <include>
-      <pose>0 0 0.02 0 0 0</pose>
-      <uri>model://arucotag</uri>
+      <pose>1 0 2 0 0 0</pose>
+      <uri>model://barge</uri>
     </include>
 
   </world>
