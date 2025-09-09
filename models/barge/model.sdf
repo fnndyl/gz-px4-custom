@@ -59,5 +59,25 @@
       <child>arucotag_model::base</child> <!-- Link inside child model -->
     </joint>
 
+
+    <!-- Pose publisher -->
+    <plugin
+      filename="gz-sim-odometry-publisher-system"
+      name="gz::sim::systems::OdometryPublisher">
+      <odom_publish_frequency>50</odom_publish_frequency>
+      <dimensions>3</dimensions>
+      <odom_topic>barge/odom</odom_topic>
+      <odom_covariance_topic>barge/odom_covariance</odom_covariance_topic>
+    </plugin>
+    
+    <plugin
+    	filename="gz-sim-pose-publisher-system"
+    	name="gz::sim::systems::PosePublisher">
+    	<publish_link_pose>true</publish_link_pose>
+    	<publish_collision_pose>false</publish_collision_pose>
+      	<publish_visual_pose>false</publish_visual_pose>
+      	<publish_nested_model_pose>false</publish_nested_model_pose>
+    </plugin>
+
   </model>
 </sdf>

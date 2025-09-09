@@ -194,7 +194,7 @@
     </spherical_coordinates>
 
     <include>
-      <pose>1 0 2 0 0 0</pose>
+      <pose>0 0 2 0 0 0</pose>
       <uri>model://barge</uri>
     </include>
 
