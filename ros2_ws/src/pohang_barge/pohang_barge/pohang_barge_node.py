@@ -6,6 +6,16 @@ from geometry_msgs.msg import Point, Quaternion
 from rclpy.qos import QoSProfile, DurabilityPolicy, ReliabilityPolicy, HistoryPolicy
 from nav_msgs.msg import Odometry
 
+def quaternion_multiply(q1, q2):
+    """Quaternion multiplication: q = q1 * q2."""
+    x1, y1, z1, w1 = q1
+    x2, y2, z2, w2 = q2
+    x = w1*x2 + x1*w2 + y1*z2 - z1*y2
+    y = w1*y2 - x1*z2 + y1*w2 + z1*x2
+    z = w1*z2 + x1*y2 - y1*x2 + z1*w2
+    w = w1*w2 - x1*x2 - y1*y2 - z1*z2
+    return np.array([x, y, z, w])
+
 def slerp(q0, q1, t):
     """Spherical linear interpolation between two quaternions."""
     dot = np.dot(q0, q1)
@@ -49,6 +59,12 @@ class BargeControllerNode(Node):
         self.positions = df[['x_norm', 'y_norm', 'z']].to_numpy()
         self.orientations = df[['qx', 'qy', 'qz', 'qw']].to_numpy()
 
+        # Apply 90 yaw rotation offset
+        theta = -np.pi / 2.0  # 90 degrees
+        q_offset = np.array([0.0, 0.0, np.sin(theta/2), np.cos(theta/2)])
+        for i in range(len(self.orientations)):
+            self.orientations[i] = quaternion_multiply(q_offset, self.orientations[i])
+
         #self.start_wall_time = self.get_clock().now().nanoseconds / 10e9
         self.start_wall_time = 0.0
         self.start_data_time = self.timestamps[0] # Can select other parts of data to start with
@@ -88,7 +104,7 @@ class BargeControllerNode(Node):
         msg.header.frame_id = 'odom'
         msg.child_frame_id = 'base_link'
 
-        msg.pose.pose.position = Point(x=pos[0], y=pos[1], z=pos[2])
+        msg.pose.pose.position = Point(x=pos[1], y=pos[0], z=pos[2])
         msg.pose.pose.orientation = Quaternion(x=ori[0], y=ori[1], z=ori[2], w=ori[3])
 
         self.odometry_publisher.publish(msg)
