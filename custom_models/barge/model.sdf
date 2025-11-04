@@ -48,15 +48,26 @@
 
     <!-- ArucoTag model for good practice -->
     <include>
-      <uri>model://arucotag_staged</uri>
-      <name>arucotag_model</name>
+      <uri>model://arucotag_0</uri>
+      <name>arucotag_0</name>
+      <pose>1 0 0.026 0 0 0</pose>
+    </include>
+    
+    <include>
+      <uri>model://arucotag_19</uri>
+      <name>arucotag_19<name>
       <pose>0 0 0.026 0 0 0</pose>
     </include>
 
     <!-- Fixed joint -->
-    <joint name="fixed_joint_to_arucotag" type="fixed">
+    <joint name="fixed_joint_to_arucotag_0" type="fixed">
       <parent>platform_link</parent>   <!-- A link in the parent model -->
-      <child>arucotag_model::base</child> <!-- Link inside child model -->
+      <child>arucotag_0::base</child> <!-- Link inside child model -->
+    </joint>
+    
+    <joint name="fixed_joint_to_arucotag_0" type="fixed">
+      <parent>platform_link</parent>   <!-- A link in the parent model -->
+      <child>arucotag_19::base</child> <!-- Link inside child model -->
     </joint>
 
 
