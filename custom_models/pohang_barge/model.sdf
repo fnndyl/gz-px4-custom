@@ -252,13 +252,13 @@
     <include>
       <uri>model://arucotag_0</uri>
       <name>arucotag_0</name>
-      <pose>0 1.25 1.63 0 0 0</pose>
+      <pose>0 1.25 1.63 0 0 3.141</pose>
     </include>
     
     <include>
       <uri>model://arucotag_19</uri>
       <name>arucotag_19</name>
-      <pose>0 0 1.63 0 0 0</pose>
+      <pose>0 0 1.63 0 0 3.141</pose>
     </include>
 
     <!-- Fixed joint -->
