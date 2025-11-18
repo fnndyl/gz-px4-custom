@@ -10,6 +10,7 @@ if [ -d "$HOME/PX4-Autopilot" ]; then
 	cp "$SCRIPT_DIR/custom_worlds/"* "$HOME/PX4-Autopilot/Tools/simulation/gz/worlds"
 	cp -r "$SCRIPT_DIR/custom_models/"* "$HOME/PX4-Autopilot/Tools/simulation/gz/models"
 
+	# Jank but can also copy plugins directly - one at a time, unfortunately. Requires make px4_sitl to run first.
 	cp "$SCRIPT_DIR/gz_plugins/barge_controller/build/libBargeController.so" "$HOME/PX4-Autopilot/build/px4_sitl_default/src/modules/simulation/gz_plugins"
 
 	# Add gz plugins to search directory

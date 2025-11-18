@@ -1,3 +1,4 @@
+import math
 import rclpy
 import numpy as np
 import pandas as pd
@@ -5,6 +6,36 @@ from rclpy.node import Node
 from geometry_msgs.msg import Point, Quaternion
 from rclpy.qos import QoSProfile, DurabilityPolicy, ReliabilityPolicy, HistoryPolicy
 from nav_msgs.msg import Odometry
+
+def quat2eul(q):
+        """
+        One would think there would be a library for this sigh
+        """
+        w = q[3]
+        x = q[0]
+        y = q[1]
+        z = q[2]
+
+        roll = math.atan2(2.0*(y*z + w*x), w*w - x*x - y*y + z*z)
+        pitch = math.asin(-2.0*(x*z - w*y))
+        yaw = math.atan2(2.0*(x*y + w*z), w*w + x*x - y*y - z*z)
+
+        return [roll, pitch, yaw]
+
+def eul2quat(roll, pitch, yaw):
+    cr = math.cos(roll / 2)
+    sr = math.sin(roll / 2)
+    cp = math.cos(pitch / 2)
+    sp = math.sin(pitch / 2)
+    cy = math.cos(yaw / 2)
+    sy = math.sin(yaw / 2)
+
+    w = cr * cp * cy + sr * sp * sy
+    x = sr * cp * cy - cr * sp * sy
+    y = cr * sp * cy + sr * cp * sy
+    z = cr * cp * sy - sr * sp * cy
+
+    return [x, y, z, w]
 
 def quaternion_multiply(q1, q2):
     """Quaternion multiplication: q = q1 * q2."""
@@ -60,9 +91,17 @@ class BargeControllerNode(Node):
         self.orientations = df[['qx', 'qy', 'qz', 'qw']].to_numpy()
 
         # Apply 90 yaw rotation offset
-        theta = -np.pi / 2.0  # 90 degrees
+        theta = np.pi  # 90 degrees
         q_offset = np.array([0.0, 0.0, np.sin(theta/2), np.cos(theta/2)])
+        # q_offset = np.array([0.0, 0.0, 0.0, 1.0])
+
         for i in range(len(self.orientations)):
+            rpy = quat2eul(self.orientations[i])
+            rpy[2] = -rpy[2]
+
+            quat = np.array(eul2quat(rpy[0], rpy[1], rpy[2]))
+
+            self.orientations[i] = quat
             self.orientations[i] = quaternion_multiply(q_offset, self.orientations[i])
 
         #self.start_wall_time = self.get_clock().now().nanoseconds / 10e9
@@ -97,7 +136,7 @@ class BargeControllerNode(Node):
             q1 = self.orientations[idx]
             ori = slerp(q0, q1, alpha)
 
-        print(self.start_wall_time, pos)
+        print(f"{self.start_wall_time:.1f}, {pos}")
 
         msg = Odometry()
         msg.header.stamp = self.get_clock().now().to_msg()
