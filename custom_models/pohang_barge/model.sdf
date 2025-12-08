@@ -2,6 +2,7 @@
 <sdf version="1.11">
   <model name="pohang_barge_v2">
     <link name="base_link">
+
       <inertial>
         <mass>0.0001</mass>
         <inertia>
@@ -13,7 +14,28 @@
           <izz>1e-09</izz>
         </inertia>
       </inertial>
+
+      <!-- GPS tracking the barge -->
+      <sensor name="navsat_sensor" type="navsat">
+        <gz_frame_id>base_link</gz_frame_id>
+        <always_on>1</always_on>
+        <update_rate>5</update_rate>
+
+        <navsat>
+          <position_sensing>
+          <horizontal>
+            <noise type="gaussian">
+              <stddev>1.2e-5</stddev>
+            </noise>
+          </horizontal>
+        </position_sensing>
+        </navsat>
+        
+        <topic>/barge/gps</topic>
+      </sensor>
+
     </link>
+
     <link name="rigid_group_1_1">
       <inertial>
         <mass>10000</mass>
@@ -281,7 +303,8 @@
       <odom_topic>barge/odom</odom_topic>
       <odom_covariance_topic>barge/odom_covariance</odom_covariance_topic>
     </plugin>
-    
+
+    <!--    
     <plugin
     	filename="gz-sim-pose-publisher-system"
     	name="gz::sim::systems::PosePublisher">
@@ -290,13 +313,7 @@
       	<publish_visual_pose>false</publish_visual_pose>
       	<publish_nested_model_pose>false</publish_nested_model_pose>
     </plugin>
-
-    <!-- GPS tracking the barge -->
-    <sensor name="navsat_sensor" type="navsat">
-      <gz_frame_id>base_link</gz_frame_id>
-      <always_on>1</always_on>
-      <update_rate>30</update_rate>
-    </sensor>
+    -->
 
     <joint name="base_link_joint" type="fixed">
       <parent>base_link</parent>
