@@ -22,5 +22,15 @@
         </material>
       </visual>
     </link>
+
+    <plugin
+      filename="gz-sim-odometry-publisher-system"
+      name="gz::sim::systems::OdometryPublisher">
+      <odom_publish_frequency>60</odom_publish_frequency>
+      <dimensions>3</dimensions>
+      <odom_topic>tag/otag/gz_groundtruth_odom</odom_topic>
+      <odom_covariance_topic>tag/otag/gz_groundtruth_odom_covariance</odom_covariance_topic>
+    </plugin>
+
   </model>
 </sdf>
