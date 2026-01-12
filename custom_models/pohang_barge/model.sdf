@@ -286,12 +286,12 @@
     <!-- Fixed joint -->
     <joint name="fixed_joint_to_arucotag_0" type="fixed">
       <parent>base_link</parent>   <!-- A link in the parent model -->
-      <child>arucotag_0::base</child> <!-- Link inside child model -->
+      <child>arucotag_0::base_0</child> <!-- Link inside child model -->
     </joint>
     
     <joint name="fixed_joint_to_arucotag_19" type="fixed">
       <parent>base_link</parent>   <!-- A link in the parent model -->
-      <child>arucotag_19::base</child> <!-- Link inside child model -->
+      <child>arucotag_19::base_19</child> <!-- Link inside child model -->
     </joint>
 
     <!-- Pose publisher -->
