@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <sdf version="1.11">
-  <model name="pohang_barge_v2">
+  <model name="pohang_barge">
     <link name="base_link">
 
       <inertial>
@@ -274,7 +274,7 @@
     <include>
       <uri>model://arucotag_0</uri>
       <name>arucotag_0</name>
-      <pose>0 1.25 1.63 0 0 3.141</pose>
+      <pose>0 0 1.632 0 0 3.141</pose>
     </include>
     
     <include>
@@ -303,17 +303,6 @@
       <odom_topic>barge/odom</odom_topic>
       <odom_covariance_topic>barge/odom_covariance</odom_covariance_topic>
     </plugin>
-
-    <!--    
-    <plugin
-    	filename="gz-sim-pose-publisher-system"
-    	name="gz::sim::systems::PosePublisher">
-    	<publish_link_pose>true</publish_link_pose>
-    	<publish_collision_pose>false</publish_collision_pose>
-      	<publish_visual_pose>false</publish_visual_pose>
-      	<publish_nested_model_pose>false</publish_nested_model_pose>
-    </plugin>
-    -->
 
     <joint name="base_link_joint" type="fixed">
       <parent>base_link</parent>
