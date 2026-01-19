@@ -8,12 +8,13 @@
 
 
       <collision name="collision">
-	<geometry>
-	  <plane>
-	    <normal>0 0 1</normal>
-	    <size>3713.65 3696.58</size>
-	  </plane>
-	</geometry>
+	  	<pose>0 0 -3 0 0 0</pose>
+		<geometry>
+			<plane>
+				<normal>0 0 1</normal>
+				<size>3713.65 3696.58</size>
+			</plane>
+		</geometry>
       </collision>
 	
 
