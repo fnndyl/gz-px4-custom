@@ -20,10 +20,10 @@
 
       <visual name="ground_visual">
 	<geometry>
-	  <plane>
-	    <normal>0 0 1</normal>
-	    <size>3713.65 3696.58</size>
-	  </plane>
+	<plane>
+		<normal>0 0 1</normal>
+		<size>3713.65 3696.58</size>
+	</plane>
 	</geometry>
 	<material>
 	  <diffuse>1 1 1 1</diffuse>
