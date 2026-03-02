@@ -85,7 +85,7 @@
 
     // Initialize node + get setpoints from function
     {
-		std::string topic = "barge_cmd";
+		std::string topic = "/barge/cmd";
 		// Subscribe to node and register a callback
 		if (!_node.Subscribe(topic, &BargeController::bargeCallback, this))
 		{
