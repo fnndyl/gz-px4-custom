@@ -449,8 +449,8 @@
     </include>
     
     <include>
-      <uri>model://arucotag_19</uri>
-      <name>arucotag_19</name>
+      <uri>model://arucotag_59</uri>
+      <name>arucotag_59</name>
       <pose>0 0 2.15 0 0 3.141</pose>
     </include>
 
@@ -460,9 +460,9 @@
       <child>arucotag_0::base_0</child> <!-- Link inside child model -->
     </joint>
     
-    <joint name="fixed_joint_to_arucotag_19" type="fixed">
+    <joint name="fixed_joint_to_arucotag_59" type="fixed">
       <parent>base_link</parent>   <!-- A link in the parent model -->
-      <child>arucotag_19::base_19</child> <!-- Link inside child model -->
+      <child>arucotag_59::base_59</child> <!-- Link inside child model -->
     </joint>
 
     <joint name="base_link_joint" type="fixed">
