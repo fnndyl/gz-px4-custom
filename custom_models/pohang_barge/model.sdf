@@ -20,7 +20,7 @@
       <sensor name="navsat_sensor" type="navsat">
         <gz_frame_id>base_link</gz_frame_id>
         <always_on>1</always_on>
-        <update_rate>5</update_rate>
+        <update_rate>1</update_rate>
 
         <navsat>
           <position_sensing>
@@ -33,6 +33,25 @@
         </navsat>
         
         <topic>/barge/gps</topic>
+      </sensor>
+
+      <!-- Groundtruth GPS tracking the barge -->
+      <sensor name="groundtruth_navsat_sensor" type="navsat">
+        <gz_frame_id>base_link</gz_frame_id>
+        <always_on>1</always_on>
+        <update_rate>30</update_rate>
+
+        <navsat>
+          <position_sensing>
+          <horizontal>
+            <noise type="gaussian">
+              <stddev>0.0</stddev>
+            </noise>
+          </horizontal>
+        </position_sensing>
+        </navsat>
+        
+        <topic>/barge/gz_groundtruth_gps</topic>
       </sensor>
 
     </link>
